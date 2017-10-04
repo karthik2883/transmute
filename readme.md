@@ -1,7 +1,7 @@
 
-## Health Cash :: ERC20 Token
+## Health Cash :: Transmute
 
-This is an ERC 20 compliant token contract.
+This solidity smart contract provides the Ethereum half of the functionality needed to move the HLTH token to the Health Nexus blockchain. 
 
 ## Getting Started
 
