@@ -1,67 +1,38 @@
 
-## Health Cash :: Transmute
+# Health Nexus :: Transmute
+<img align="right" src="./assets/HN_token_transparent.png?raw=true" height="348">
+This smart-contract provides the Ethereum half of the functionality needed to move health cash (HLTH) from the Ethereum blockchain to the Health Nexus blockchain. 
 
-This solidity smart contract provides the Ethereum half of the functionality needed to move the HLTH token to the Health Nexus blockchain. 
+Functionality:
 
-## Getting Started
+* Require the contract be explicitedly authorized to spend HLTH, making it entirely voluntary.
+* A HLTH owner that has authorized the TransmuteAgent contract can then create a valid transmute order which burns their HLTH tokens in the process.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+## Installation
 
-### Prerequisites
+To clone and use this smart contract, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)), [Truffle](http://truffleframework.com/), and a local development Ethereum node on your computer ([Geth](https://github.com/ethereum/go-ethereum), [Parity](https://github.com/paritytech/parity)). From your command line:
 
-To run this locally you will need the [Truffle framework](http://truffleframework.com/), node.js, npm, and a local development ethereum node
+```bash
+# Clone this repository
+$ git clone https://github.com/Health-Nexus/transmute.git
 
+# Go into the repository
+$ cd transmute
 
-### Installing
-
-Install truffle
-
-```
-
-$ npm install -g truffle
-
-```
-
-Once you have cloned the project, from inside the project directory you'll need to run npm install to get the 
-testing libraries. 
-
-```
-
+# Install dependencies
 $ npm install
 
-```
-
-Start up your ethereum node then compile and deploy your contracts. You'll need two unlocked accounts on your
-ethereum client to be able to run the token transfer tests successfully.
-
-```
-
+# Compile contracts
 $ truffle compile
+
+# Deploy contracts
 $ truffle migrate
-
 ```
 
+## Testing
 
-## Running the tests
-
-Once the contracts are deployed to your development ethereum node you can run the test like this. 
-
-```
-
+```bash
+# Test contracts
 $ truffle test
-
 ```
 
-### Test Overview
-
-
-
-
-## Authors
-
-* **David Akers** - *Initial work* - [davidmichaelakers](https://github.com/davidmichaelakers)
-
-
-## Acknowledgments
-
-* [SimplyVital Health](https://www.simplyvitalhealth.com/)
