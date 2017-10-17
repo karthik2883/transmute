@@ -2,6 +2,7 @@
 # Health Nexus :: Transmute
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?style=flat-square)](https://github.com/Health-Nexus/transmute/blob/master/LICENSE)
 <img align="right" src="./assets/HN_token_transparent.png?raw=true" height="348">
+
 This smart-contract provides the Ethereum portion of the functionality needed to move health cash (HLTH) from the Ethereum blockchain to the Health Nexus blockchain. 
 
 Functionality:
