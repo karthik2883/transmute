@@ -38,3 +38,25 @@ $ truffle migrate
 $ truffle test
 ```
 
+## Notes
+
+This Ethereum smart-contract is one-third of a system consisting of:
+
+* An Ethereum smart-contract for burning HLTH tokens and creating trasmute orders. 
+* An off-chain service that reads transmute orders from Ethereum and pushes those orders to the fufillment smart-contract on Health Nexus.
+* A Health Nexus smart-contract that fufills transmute orders. 
+
+## Credits
+
+Major dependencies:
+
+* [Truffle](https://github.com/trufflesuite/truffle)
+
+Contributors: 
+
+* **Lucas Hendren** - [lhendre](https://github.com/lhendre)
+* **David Akers** - [davidmichaelakers](https://github.com/davidmichaelakers)
+
+## License
+
+[Apache License 2.0](https://github.com/Health-Nexus/drs/blob/master/LICENSE)
