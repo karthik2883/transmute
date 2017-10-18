@@ -49,10 +49,10 @@ contract TransmuteAgent is Ownable {
         
         //burn the tokens
         token.burn(_value);
+        transmuteNonce ++;
+        bytes32 id = keccak256(now,transmuteNonce,_to);
 
         //make a record used to allocate on Health Nexus
-        transmuteNonce += 1;
-        bytes32 id = keccak256(now,transmuteNonce,_to);
         Transmute(msg.sender, _to, _value, id);
     }
 
