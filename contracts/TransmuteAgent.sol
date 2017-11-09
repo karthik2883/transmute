@@ -34,6 +34,14 @@ contract TransmuteAgent is Ownable {
         return token.allowance(msg.sender, address(this)); 
     }
 
+    function() {
+        revert(); 
+    }
+
+    function TransmuteAgent(BurnableToken _token) {
+        token = _token;
+    }
+  
     /**
     * Cross-chain transmution burns the original
     * HLTH token. 
@@ -68,12 +76,12 @@ contract TransmuteAgent is Ownable {
 
     /**
     * [Admin Only]
-    * enable/disable 
+    * enable / disable 
     */
-    function enable(bool _enabled) 
-    onlyOwner 
-    {
-        enabled = _enabled;
+    function enable() onlyOwner {
+        enabled = true;
     }
-
+    function disable() onlyOwner {
+        enabled = false;
+    }
 }
