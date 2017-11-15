@@ -12,11 +12,21 @@ contract('TransmuteAgent', function(accounts) {
 
   beforeEach(async function() {
     this.token = await HealthCashMock.new()
-    this.agent = await TransmuteAgent.new()
-    await this.agent.setTokenToTransmute(this.token.address)
+    this.agent = await TransmuteAgent.new(this.token.address)
   })
 
   it('should not allow transmutation until enabled', async function() {
+    let validAddress = accounts[1]
+    await this.agent.transmuteToken(validAddress, 10)
+    let totalSupply = await this.token.totalSupply()    
+    totalSupply.should.be.bignumber.equal(100)
+  })
+
+  it('should not allow transmutation after disabled', async function() {
+    await this.token.approve(this.agent.address, 10);    
+    await this.agent.enable()
+    await this.agent.disable()
+
     let validAddress = accounts[1]
     await this.agent.transmuteToken(validAddress, 10)
     let totalSupply = await this.token.totalSupply()    
@@ -27,7 +37,7 @@ contract('TransmuteAgent', function(accounts) {
     
     //Tranmutation Agent must be explictly approved
     await this.token.approve(this.agent.address, 10);    
-    await this.agent.enable(true) 
+    await this.agent.enable() 
 
     let validAddress = accounts[0]
     await this.agent.transmuteToken(validAddress, 10)
@@ -40,7 +50,7 @@ contract('TransmuteAgent', function(accounts) {
 
     //Tranmutation Agent must be explictly approved
     await this.token.approve(this.agent.address, 10);
-    await this.agent.enable(true)    
+    await this.agent.enable()    
 
     let validAddress = accounts[0]
     await this.agent.transmuteToken(validAddress,10)
@@ -51,7 +61,7 @@ contract('TransmuteAgent', function(accounts) {
   it('should be unable to transmute too many tokens', async function() {
     //Tranmutation Agent must be explictly approved
     await this.token.approve(this.agent.address, 100);
-    await this.agent.enable(true)    
+    await this.agent.enable()    
     await this.agent.transmuteToken(accounts[0],900)
     
     let balance = await this.token.balanceOf(accounts[0])
@@ -62,7 +72,7 @@ contract('TransmuteAgent', function(accounts) {
   })
 
   it('should be unable to transmute from an account without authorization', async function() {
-    await this.agent.enable(true)    
+    await this.agent.enable()    
     await this.agent.transmuteToken(accounts[0],100)
     let balance = await this.token.balanceOf(accounts[0])
     balance.should.be.bignumber.equal(100,'was able to transfer unauthorized tokens')
@@ -72,7 +82,7 @@ contract('TransmuteAgent', function(accounts) {
   it('should increment the Trasmute Agent Nonce', async function() {
     
     await this.token.approve(this.agent.address, 2);        
-    await this.agent.enable(true)  
+    await this.agent.enable()  
     let validAddress = accounts[1]
 
     await this.agent.transmuteToken(validAddress,1)
@@ -87,7 +97,7 @@ contract('TransmuteAgent', function(accounts) {
 
   it('should create a valid Transmute Event', async function() {
     await this.token.approve(this.agent.address, 10);        
-    await this.agent.enable(true)  
+    await this.agent.enable()  
     let validAddress = accounts[1]
     let tx = await this.agent.transmuteToken(validAddress, 10)
 
